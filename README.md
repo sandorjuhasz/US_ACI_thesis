@@ -16,16 +16,18 @@ How is the amenity complexity of urban neighborhoods related to their centrality
 - **Commuting flows:** LEHD Origin-Destination Employment Statistics (LODES)
 - **Geographies:** Census TIGER/Line tract boundaries, CBSA delineation files
 
+The datasets, and how to download them, are described in [`data/README.md`](data/README.md).
+
 ---
 
 ## Structure of the repository
 
 ```
-├── code/          # Data processing, ECI estimation, and analysis notebooks
-├── data/
-│   └── raw/ # Cleaned tract-level datasets used in the analysis
-│   └── processed/ # Cleaned tract-level datasets used in the analysis
-├── literature/    # Key papers for the conceptual framework
+├── code/              # Data overview, Foursquare cleaning, and ECI estimation notebooks
+├── data/              # Data description (README) — files are downloaded separately
+│   ├── raw/           # Original POI, ACS, and census tract files
+│   └── processed/     # Cleaned datasets created by the notebooks
+├── literature/        # Key papers for the conceptual framework
 └── README.md
 ```
 

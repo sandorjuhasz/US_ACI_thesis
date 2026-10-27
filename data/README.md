@@ -1,8 +1,6 @@
 # Data
 
-The data files are **not stored on GitHub** because they are too large. Download them from this link:
-
-**[LINK — provided by your supervisor]**
+The data files are **not stored on GitHub** because they are too large. Download link provided by the supervisor.
 
 Copy the **content** of the downloaded folder into `data/raw/` (do not create an extra subfolder). The notebooks in `code/` expect exactly this structure:
 
@@ -13,6 +11,7 @@ data/
 │   │   ├── foursquare_12060_atlanta_places.parquet
 │   │   ├── ...
 │   │   └── foursquare_47900_washington_places.parquet
+│   ├── metro_areas/                               # shapefile (.shp, .shx, .dbf, .prj, .cpg)
 │   ├── acs_data_census_tracts_2012_2020.csv.gz
 │   └── censustract_geoms_top50.geojson
 └── processed/                                     # created by the notebooks
@@ -23,7 +22,7 @@ data/
 ## Raw data
 
 **`POI_US_top50_metros/`** — Foursquare Open Source Places for the 50 largest US metropolitan areas
-- One parquet file per metro: `foursquare_<cbsacode>_<name>_places.parquet`, e.g. `foursquare_40060_richmond_places.parquet`
+- One parquet file per metro: `foursquare_<cbsacode>_<name>_places.parquet`, e.g. `foursquare_14460_boston_places.parquet`
 - ~13.2 million POIs in total
 - Key columns: `fsq_place_id`, `name`, `latitude`, `longitude`, `fsq_category_labels`, `date_created`, `date_closed`, `cbsacode`
 - `fsq_category_labels` holds the category hierarchy, e.g. `["Dining and Drinking > Restaurant > Italian Restaurant"]`. About 8% of POIs have no category. See `code/02_FS_data_cleaning.ipynb` for how to clean it.
@@ -41,7 +40,12 @@ data/
 - `full_geoid` — census tract ID, matches `tract_id` in the ACS file
 - Also: `display_name`, `aland` / `awater` (land / water area in m²), `population`
 - **Note:** the file has one GeoJSON feature per line, so `gpd.read_file()` reads only the first tract. Read it line by line instead (see `code/01_data_overview.ipynb`).
-- The file has no metro code. Assign tracts to metros with a spatial join to the POIs, or with the Census CBSA delineation files.
+- The file has no metro code. Assign tracts to metros with a spatial join to `metro_areas/`.
+
+**`metro_areas/`** — boundaries of the 50 metropolitan areas (shapefile)
+- 50 metro areas (CBSAs), coordinates in NAD83 (EPSG:4269) — convert with `.to_crs("EPSG:4326")` before joining with the tracts or POIs
+- `cbsacode` — metro area code, matches `cbsacode` in the POI files
+- Read with `gpd.read_file("../data/raw/metro_areas/metro_areas.shp")`
 
 ---
 

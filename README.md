@@ -25,7 +25,7 @@ The datasets, and how to download them, are described in [`data/README.md`](data
 ```
 ├── code/              # Data overview, Foursquare cleaning, and ECI estimation notebooks
 ├── data/              # Data description (README) — files are downloaded separately
-│   ├── raw/           # Original POI, ACS, and census tract files
+│   ├── raw/           # Original POI, ACS, census tract, and metro area files
 │   └── processed/     # Cleaned datasets created by the notebooks
 ├── literature/        # Key papers for the conceptual framework
 └── README.md

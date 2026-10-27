@@ -1,0 +1,44 @@
+# Data (too large / licensed — share via links, not git)
+data/raw/*
+data/processed/*
+!data/**/.gitkeep
+
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+.cache/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# Packaging / build
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+.conda/
+.python-version
+
+# Jupyter / IPython
+.ipynb_checkpoints/
+profile_default/
+ipython_config.py
+
+# Secrets / environment variables
+.env
+.env.*
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
